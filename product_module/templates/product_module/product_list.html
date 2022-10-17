@@ -1,0 +1,202 @@
+{% extends 'shared/base_shop.html' %}
+{% block tilte %}
+    لیست محصولات
+{% endblock %}
+{% block content %}
+    <!-- Hidden Sidebar -->
+    <section class="hidden-bar">
+        <div class="inner-box text-center">
+            <div class="cross-icon"><span class="fa fa-times"></span></div>
+            <div class="title">
+                <h4>قرار ملاقات بگیرید</h4>
+            </div>
+
+            <!--Appointment Form-->
+            <div class="appointment-form">
+                <form method="post" action="#">
+                    <div class="form-group">
+                        <input type="text" name="text" value="" placeholder="نام" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" value="" placeholder="آدرس ایمیل" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="متن" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="theme-btn">ارسال کنید</button>
+                    </div>
+                </form>
+            </div>
+
+            <!--Social Icons-->
+            <div class="social-style-one">
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="ml-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+    <!--End Hidden Sidebar -->
+
+
+    <!-- Page Banner Start -->
+    <section class="page-banner-area rel z-1 text-white text-center"
+             style="background-image: url(/static/images/banner.jpg);">
+        <div class="container">
+            <div class="banner-inner rpt-10">
+                <h2 class="page-title wow fadeInUp delay-0-2s">فروشگاه</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="index.html">خانه</a></li>
+                        <li class="breadcrumb-item active">فروشگاه</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <img class="circle-one" src="/static/images/shapes/circle-one.png" alt="Circle">
+        <img class="circle-two" src="/static/images/shapes/circle-two.png" alt="Circle">
+    </section>
+    <!-- Page Banner End -->
+
+
+    <!-- Shop Page Start -->
+    <section class="shop-page-area py-130 rpy-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop-sidebar rmb-55">
+                        <div class="widget widget-search wow fadeInUp delay-0-2s">
+                            <form action="#">
+                                <input type="text" placeholder="جستجو" required>
+                                <button type="submit" class="searchbutton fa fa-search"></button>
+                            </form>
+                        </div>
+                        <div class="widget widget-menu wow fadeInUp delay-0-4s">
+                            <h4 class="widget-title d-flex justify-content-start align-items-center"> دسته بندی
+                                محصولات </h4>
+                            <ul>
+                                {% for category in categories %}
+                                    <li><a href="course-grid.html">{{ category.title }} </a> <span>05</span></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="widget widget-products wow fadeInUp delay-0-2s">
+                            <h4 class="widget-title d-flex justify-content-start align-items-center">فروش محصولات</h4>
+                            <ul>
+                                <li>
+                                    <div class="image">
+                                        <img src="/static/images/widgets/product1.png" alt="Product">
+                                    </div>
+                                    <div class="content">
+                                        <h6><a href="product-details.html">Historical Store Book</a></h6>
+                                        <span>By <a href="course-list.html">David Malenga</a></span>
+                                        <div class="ratting">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="image">
+                                        <img src="/static/images/widgets/product2.png" alt="Product">
+                                    </div>
+                                    <div class="content">
+                                        <h6><a href="product-details.html">Historical Store Book</a></h6>
+                                        <span>By <a href="course-list.html">David Malenga</a></span>
+                                        <div class="ratting">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="image">
+                                        <img src="/static/images/widgets/product3.png" alt="Product">
+                                    </div>
+                                    <div class="content">
+                                        <h6><a href="product-details.html">Historical Store Book</a></h6>
+                                        <span>By <a href="course-list.html">David Malenga</a></span>
+                                        <div class="ratting">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="widget widget-price-filter wow fadeInUp delay-0-2s">
+                            <h4 class="widget-title d-flex justify-content-start align-items-center">فیلتر بر اساس
+                                قیمت</h4>
+                            <div class="price-slider-range"></div>
+                            <div class="price"><span>5</span> <input type="text" id="price" readonly></div>
+                        </div>
+                        <div class="widget widget-tag-cloud wow fadeInUp delay-0-2s">
+                            <h4 class="widget-title d-flex justify-content-start align-items-center">لیست تگ ها</h4>
+                            <div class="tag-coulds">
+                                {% for tag in tags %}
+                                    <a href="blog.html">{{ tag.caption}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="prduct-items-wrap">
+                        <div class="shop-shorter rel z-3 mb-40 wow fadeInUp delay-0-2s">
+                            <div class="sort-text">
+                                نمایش 5 از 99 کتاب
+                            </div>
+                            <div class="products-dropdown">
+                                <select>
+                                    <option value="default">مرتب سازی بر اساس</option>
+                                    <option value="new" selected="">آخرین</option>
+                                    <option value="old">قدیمی ترین</option>
+                                    <option value="hight-to-low">زیاد به کم</option>
+                                    <option value="low-to-high">کم به زیاد</option>
+                                </select>
+                            </div>
+                            <ul class="grid-list">
+                                <li><a href="#"><i class="fas fa-list-ul"></i></a></li>
+                                <li><a href="#" class="active"><i class="fas fa-border-all"></i></a></li>
+                            </ul>
+
+                        </div>
+                        <div class="row">
+                            {% for product in products %}
+                                {% include 'includes/product_item_partial.html' with product=product %}
+                            {% endfor %}
+                        </div>
+                        <ul class="pagination flex-wrap justify-content-center mt-20">
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
+                            </li>
+                            <li class="page-item active">
+                                    <span class="page-link">
+                                        01
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">02</a></li>
+                            <li class="page-item"><a class="page-link" href="#">03</a></li>
+                            <li class="page-item disabled">
+                                <span class="page-link"><i class="fas fa-angle-double-left"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Page End -->
+{% endblock %}

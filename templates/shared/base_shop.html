@@ -1,0 +1,29 @@
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--====== Title ======-->
+    <title>{% block tilte %}
+    {% endblock %}</title>
+    {% include 'shared/header_references.html' %}
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"></div>
+    {% include 'shop/site_header_component.html' %}
+    <!--Form Back Drop-->
+    <div class="form-back-drop"></div>
+    {% block content %}
+    {% endblock %}
+    {% include 'shop/site_footer_component.html' %}
+</div>
+<!--End pagewrapper-->
+{% include 'shared/footer_references.html' %}
+</body>
+</html>

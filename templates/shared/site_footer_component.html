@@ -1,0 +1,118 @@
+<!-- Footer Area Start -->
+<footer class="main-footer footer-two bg-blue-two text-white">
+    <div class="container">
+        <div class="logo-inner style-two pt-85 pb-35">
+            <div class="logo-item">
+                <a href="about.html"><img src="/static/images/client-logos/client-logo-two1.png"
+                                          alt="Client Logo"></a>
+            </div>
+            <div class="logo-item">
+                <a href="about.html"><img src="/static/images/client-logos/client-logo-two5.png"
+                                          alt="Client Logo"></a>
+            </div>
+            <div class="logo-item">
+                <a href="about.html"><img src="/static/images/client-logos/client-logo-two3.png"
+                                          alt="Client Logo"></a>
+            </div>
+            <div class="logo-item">
+                <a href="about.html"><img src="/static/images/client-logos/client-logo-two4.png"
+                                          alt="Client Logo"></a>
+            </div>
+            <div class="logo-item">
+                <a href="about.html"><img src="/static/images/client-logos/client-logo-two2.png"
+                                          alt="Client Logo"></a>
+            </div>
+            <div class="logo-item">
+                <a href="about.html"><img src="/static/images/client-logos/client-logo-two6.png"
+                                          alt="Client Logo"></a>
+            </div>
+        </div>
+        <div class="row large-gap justify-content-between pt-85">
+            <div class="col-lg-3 col-sm-4 ">
+                <div class="footer-widget about-widget ">
+                    <div class="footer-logo mb-25 d-flex justify-content-start">
+                        <a href="index.html"><img src="/static/images/logos/logo-four.png" alt="Logo"></a>
+                    </div>
+                    <p class="text-justify">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
+                    <div class="social-style-one pt-10 d-flex justify-content-center">
+                        <a href="contact.html"><i class="fab fa-facebook-f"></i></a>
+                        <a href="contact.html"><i class="fab fa-twitter"></i></a>
+                        <a href="contact.html" class="ml-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="contact.html"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4 d-flex justify-content-start">
+                <div class="footer-widget menu-widget">
+                    <h5 class="footer-title">دوره های آموزشی</h5>
+                    <ul>
+                        {% for category in categories %}
+                         <li class="d-flex justify-content-start"><a href="course-details.html">{{ category.title}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <div class="footer-widget contact-info-widget">
+                    <h5 class="footer-title">Get In Touch</h5>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 55 Main Street, 2nd Block, New York</li>
+                        <li><i class="far fa-envelope"></i> <a href="mailto:support@gmail.com">support@gmail.com</a>
+                        </li>
+                        <li><i class="fas fa-phone"></i> <a href="callto:+0123456789">+012 (345) 67 89</a></li>
+                        <li><i class="far fa-clock"></i> Sunday - Friday,<br> 08 am - 05 pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="footer-widget gallery-widget">
+                    <h5 class="footer-title">Gallery</h5>
+                    <div class="gallery-widget-wrap">
+                        <div class="gallery-widget-item">
+                            <img src="/static/images/widgets/gallery1.jpg" alt="Gallery">
+                            <a href="/static/images/widgets/gallery1.jpg"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="gallery-widget-item">
+                            <img src="/static/images/widgets/gallery2.jpg" alt="Gallery">
+                            <a href="/static/images/widgets/gallery2.jpg"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="gallery-widget-item">
+                            <img src="/static/images/widgets/gallery3.jpg" alt="Gallery">
+                            <a href="/static/images/widgets/gallery3.jpg"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="gallery-widget-item">
+                            <img src="/static/images/widgets/gallery4.jpg" alt="Gallery">
+                            <a href="/static/images/widgets/gallery4.jpg"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="gallery-widget-item">
+                            <img src="/static/images/widgets/gallery5.jpg" alt="Gallery">
+                            <a href="/static/images/widgets/gallery5.jpg"><i class="fab fa-instagram"></i></a>
+                        </div>
+                        <div class="gallery-widget-item">
+                            <img src="/static/images/widgets/gallery6.jpg" alt="Gallery">
+                            <a href="/static/images/widgets/gallery6.jpg"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-area rel">
+        <div class="container">
+            <div class="copyright-inner">
+                <p>© 2022. <a href="index.html">Wellern</a> All rights reserved.</p>
+                <ul class="footer-menu">
+                    <li><a href="faqs.html">Faqs</a></li>
+                    <li><a href="contact.html">Links</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Payments</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Scroll Top Button -->
+        <button class="scroll-top scroll-to-target" data-target="html"><span class="fas fa-angle-double-up"></span>
+        </button>
+    </div>
+</footer>
+<!-- Footer Area End -->
