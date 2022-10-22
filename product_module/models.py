@@ -1,21 +1,41 @@
 from django.db import models
 from django.urls import reverse
-from django.utils.text import slugify
+from account_module.models import User
 
+# from django.utils.text import slugify
 
 # Create your models here.
+from django_softdelete.models import SoftDeleteModel
+
+
 class ProductCategory(models.Model):
+    parent_id = models.IntegerField(default=0, verbose_name='والد')
+    productcategory = models.ForeignKey('ProductCategory', on_delete=models.CASCADE, related_name='parent_to_children')
     title = models.CharField(max_length=300, db_index=True, verbose_name="عنوان")
     url_title = models.CharField(max_length=300, db_index=True, verbose_name='عنوان در url')
+    description = models.TextField(db_index=True, verbose_name='توضیحات اصلی')
     is_active = models.BooleanField(verbose_name='فعال/غیر فعال')
     is_delete = models.BooleanField(verbose_name='حذف شده/نشده')
 
     def __str__(self):
-        return f'({self.title}-{self.url_title})'
+        return f'({self.title}-{self.url_title}-{self.parent_id}-{self.description}-{self.is_active})'
 
     class Meta:
         verbose_name = 'دسته بندی'
         verbose_name_plural = 'دسته بندی ها'
+
+
+class Brand(models.Model):
+    name = models.CharField(max_length=100, db_index=True, verbose_name='نام')
+    slug = models.CharField(max_length=150, db_index=True, unique=True, null=True, verbose_name='اسلاگ')
+    is_active = models.BooleanField(default=1, verbose_name='فعال/غیرفعال')
+
+    def __str__(self):
+        return f"({self.name}-{self.slug}-{self.is_active})"
+
+    class Meta:
+        verbose_name = 'برند'
+        verbose_name_plural = 'برندها'
 
 
 class Product(models.Model):
@@ -24,6 +44,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='قیمت')
     short_description = models.CharField(max_length=650, null=True, db_index=True, verbose_name='توضیحات خلاصه')
     description = models.TextField(verbose_name='توضیحات اصلی', db_index=True)
+    primary_image = models.CharField(max_length=300, db_index=True, verbose_name='تصویر اصلی')
+    status = models.IntegerField(default=1, verbose_name='وضعیت')
     is_active = models.BooleanField(default=False, verbose_name='فعال/غیرفعال')
     slug = models.SlugField(default="", null=False, db_index=True, blank=True, verbose_name='عنوان در url',
                             max_length=200, unique=True)
@@ -37,11 +59,24 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.title} ({self.price})"
+        return f"({self.title}-{self.price}-{self.short_description}-{self.description}-{self.primary_image}" \
+               f"-{self.status})"
 
     class Meta:
         verbose_name = 'محصول '
         verbose_name_plural = 'محصولات'
+
+
+class ProductImage(models.Model):
+    image = models.CharField(max_length=100, db_index=True, verbose_name='تصویر')
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_image')
+
+    def __str__(self):
+        return f"({self.image}-{self.product_id})"
+
+    class Meta:
+        verbose_name = 'تصویر '
+        verbose_name_plural = 'تصاویر'
 
 
 class ProductTag(models.Model):
@@ -54,3 +89,41 @@ class ProductTag(models.Model):
     class Meta:
         verbose_name = 'تگ محصول'
         verbose_name_plural = 'تگ های محصولات'
+
+
+class Comment(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_comment')
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_comment')
+    approved = models.BooleanField(default=1, verbose_name='تایید/عدم تایید')
+    text = models.CharField(max_length=800, verbose_name='کامنت', db_index=True)
+
+    def __str__(self):
+        return f"({self.user_id}-{self.product_id}-{self.approved}-{self.text})"
+
+    class Meta:
+        verbose_name = 'کامنت'
+        verbose_name_plural = 'کامنت ها'
+
+
+class Product_rates(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_rate')
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_rate')
+    rate = models.IntegerField(verbose_name='امتیاز')
+
+    def __str__(self):
+        return f"({self.user_id}-{self.product_id}-{self.rate})"
+
+    class Meta:
+        verbose_name = 'امتیاز'
+        verbose_name_plural = 'امتیاز ها'
+
+
+class Attributes(models.Model):
+    name = models.CharField(max_length=100, db_index=True, verbose_name='ویژگی ها')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'ویژگی'
+        verbose_name_plural = 'ویژگی ها'
