@@ -1,6 +1,6 @@
 {% extends 'shared/base_shop.html' %}
 {% block tilte %}
-    لیست محصولات
+    لیست دوره ها
 {% endblock %}
 {% block content %}
     <!-- Hidden Sidebar -->
@@ -49,7 +49,7 @@
                 <h2 class="page-title wow fadeInUp delay-0-2s">فروشگاه</h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb wow fadeInUp delay-0-4s">
-                        <li class="breadcrumb-item"><a href="index.html">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">خانه</a></li>
                         <li class="breadcrumb-item active">فروشگاه</li>
                     </ol>
                 </nav>

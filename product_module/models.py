@@ -8,17 +8,28 @@ from account_module.models import User
 from django_softdelete.models import SoftDeleteModel
 
 
+class Parent(models.Model):
+    name = models.CharField(max_length=100, verbose_name='والد')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'والد'
+        verbose_name_plural = 'والد'
+
+
 class ProductCategory(models.Model):
-    parent_id = models.IntegerField(default=0, verbose_name='والد')
-    productcategory = models.ForeignKey('ProductCategory', on_delete=models.CASCADE, related_name='parent_to_children')
     title = models.CharField(max_length=300, db_index=True, verbose_name="عنوان")
-    url_title = models.CharField(max_length=300, db_index=True, verbose_name='عنوان در url')
+    url_title = models.CharField(max_length=300, db_index=True, verbose_name='عنوان در آدرس', unique=True)
+    productcategory = models.ForeignKey(Parent, on_delete=models.CASCADE, related_name='parent_to_children', null=True,
+                                        verbose_name='رابطه با والد')
     description = models.TextField(db_index=True, verbose_name='توضیحات اصلی')
     is_active = models.BooleanField(verbose_name='فعال/غیر فعال')
     is_delete = models.BooleanField(verbose_name='حذف شده/نشده')
 
     def __str__(self):
-        return f'({self.title}-{self.url_title}-{self.parent_id}-{self.description}-{self.is_active})'
+        return f'({self.title}-{self.url_title}-{self.description}-{self.is_active})'
 
     class Meta:
         verbose_name = 'دسته بندی'
@@ -41,7 +52,9 @@ class Brand(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=500, verbose_name='نام محصول')
     category = models.ManyToManyField(ProductCategory, related_name='products_categories', verbose_name='دسته بندی ها')
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='برند', null=True)
     price = models.IntegerField(verbose_name='قیمت')
+    duration = models.CharField(max_length=50, verbose_name='مدت ویدئو', null=True)
     short_description = models.CharField(max_length=650, null=True, db_index=True, verbose_name='توضیحات خلاصه')
     description = models.TextField(verbose_name='توضیحات اصلی', db_index=True)
     primary_image = models.CharField(max_length=300, db_index=True, verbose_name='تصویر اصلی')
@@ -65,6 +78,21 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'محصول '
         verbose_name_plural = 'محصولات'
+
+
+class Properties(models.Model):
+    name = models.CharField(max_length=100, verbose_name='نام استاد')
+    product_name = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_properties', null=True)
+    pic = models.CharField(max_length=300, verbose_name='تصویر مدرس')
+    type = models.CharField(max_length=100, db_index=True, verbose_name='نوع')
+    count = models.CharField(max_length=50, verbose_name='تعداد ویدئوها')
+
+    def __str__(self):
+        return f"({self.name}-{self.pic}-{self.type}-{self.count})"
+
+    class Meta:
+        verbose_name = 'متغیر'
+        verbose_name_plural = 'متغیر ها'
 
 
 class ProductImage(models.Model):

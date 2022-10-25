@@ -7994,7 +7994,7 @@ blockquote {
   .product-details-content .author img {
     width: 36px;
     height: 36px;
-    margin-right: 15px;
+    margin-left: 15px;
     border-radius: 50%; }
   .product-details-content .author h6 {
     font-size: 18px;
@@ -8008,10 +8008,10 @@ blockquote {
   -ms-flex-align: center;
   align-items: center; }
   .product-details-content .ratting-price .ratting {
-    margin-right: 15px; }
+    margin-left: 15px; }
     .product-details-content .ratting-price .ratting i {
       font-size: 12px;
-      margin-right: 2px;
+      margin-left: 2px;
       color: #FFB113; }
   .product-details-content .ratting-price .price {
     font-size: 24px;

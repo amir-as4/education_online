@@ -3,10 +3,10 @@
         <div class="product-image">
             <span class="off">25% تخفیف</span>
             <img src="/static/images/shop/product1.png" alt="Products">
-            <a href="contact.html" class="cart-btn">خرید اشتراک</a>
+            <a href="{% url 'product-detail' slug=product.slug %}" class="cart-btn">مشاهده آموزش</a>
         </div>
-        <div class="product-content">
-            <h6><a href="product-details.html">{{ product.title }}</a></h6>
+        <div class="product-content text-right">
+            <h6><a href="{% url 'product-detail' slug=product.slug %}">{{ product.title }}</a></h6>
             <span class="category">{{  product.short_description}}</span>
             <div class="ratting">
                 <i class="fas fa-star"></i>
