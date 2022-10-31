@@ -52,7 +52,7 @@ class Brand(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=500, verbose_name='نام محصول')
     category = models.ManyToManyField(ProductCategory, related_name='products_categories', verbose_name='دسته بندی ها')
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='برند', null=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, verbose_name='برند', null=True, blank=True)
     price = models.IntegerField(verbose_name='قیمت')
     duration = models.CharField(max_length=50, verbose_name='مدت ویدئو', null=True)
     short_description = models.CharField(max_length=650, null=True, db_index=True, verbose_name='توضیحات خلاصه')
@@ -82,7 +82,8 @@ class Product(models.Model):
 
 class Properties(models.Model):
     name = models.CharField(max_length=100, verbose_name='نام استاد')
-    product_name = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_properties', null=True)
+    product_name = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_properties', null=True,
+                                     verbose_name='نام محصول')
     pic = models.CharField(max_length=300, verbose_name='تصویر مدرس')
     type = models.CharField(max_length=100, db_index=True, verbose_name='نوع')
     count = models.CharField(max_length=50, verbose_name='تعداد ویدئوها')
@@ -109,7 +110,7 @@ class ProductImage(models.Model):
 
 class ProductTag(models.Model):
     caption = models.CharField(max_length=300, db_index=True, verbose_name='عنوان')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_tag')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_tag', verbose_name='محصول')
 
     def __str__(self):
         return self.caption

@@ -91,10 +91,12 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="product-details-content wow fadeInRight delay-0-2s">
-                        <h2 class="ml-4">دوره آموزش ریاضی تجربی</h2>
+                        <h2 class="d-flex ml-4">{{ product.title }}</h2>
                         <div class="author">
                             <img src="/static/images/shop/author.jpg" alt="author">
-                            <h6>استاد مهدی رضایی</h6>
+                            {% if product.brand %}
+                                <h6>{{ product.brand.name }}</h6>
+                            {% endif %}
                         </div>
                         <div class="ratting-price mb-20">
                             <div class="ratting">
@@ -104,53 +106,46 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
-                            <span class="price">59.58</span>
+                            {% if product.price != 0 %}
+                                <span class="price">{{ product.price }}</span>
+                            {% endif %}
                         </div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error silupt atem accusantium doloremque laudantium
-                            rem riams eaque quae abillo inventore quasi architecto beatae vitae dicta sunt explicabo.
-                            Nemo enim psaml uptatem quia voluptas sit aspernatur aut odit aut fugit sedes quia
-                            consequuntur magni dolores eos</p>
+                        <p class="d-flex text-justify ">{{ product.short_description }}</p>
                         <ul class="category-tags pt-10 pb-5">
-                            <li>
-                                <b>Category</b>
+{#                            <li>#}
+{#                                <b>دسته بندی</b>#}
+{#                                <span>:</span>#}
+{#                                {% for category in categories %}#}
+{#                                    {% if product.category == category.id %}#}
+{#                                        <a href="#">{{ category.name }}</a>#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                            </li>#}
+                            <li class="d-flex">
+                                <b>برچسب ها</b>
                                 <span>:</span>
-                                <a href="#">Book</a>
-                                <a href="#">Cover</a>
-                                <a href="#">Course</a>
-                            </li>
-                            <li>
-                                <b>Tags</b>
-                                <span>:</span>
-                                <a href="#">Learn</a>
-                                <a href="#">Teach</a>
-                                <a href="#">Videos</a>
+                                {% for tag in tags %}
+                                    <a href="#">{{ tag.caption }}</a>
+                                {% endfor %}
                             </li>
                         </ul>
                         <hr>
                         <form action="#" class="add-to-cart mt-95 rmt-45">
                             <input type="number" value="1" min="1" max="20" required>
-                            <button type="submit" class="theme-btn style-two">Add to Cart</button>
+                            <button type="submit" class="theme-btn style-two">شرکت در دوره</button>
                             <button class="love"><i class="far fa-heart"></i></button>
                         </form>
                     </div>
                 </div>
             </div>
             <ul class="nav nav-tabs product-information-tab pt-55 mb-40">
-                <li><a href="#details" data-toggle="tab" class="active show">Description</a></li>
-                <li><a href="#information" data-toggle="tab">Information</a></li>
-                <li><a href="#review" data-toggle="tab">Review (05)</a></li>
+                <li><a href="#details" data-toggle="tab" class="active show">توضیحات</a></li>
+                <li><a href="#information" data-toggle="tab">اطلاعات</a></li>
+                <li><a href="#review" data-toggle="tab">کامنت ها (05)</a></li>
             </ul>
             <div class="tab-content wow fadeInUp delay-0-2s">
                 <div class="tab-pane active show" id="details">
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                        totam rem aperiam, eaque ipsa quae ab illo inventore verit atis et quasi architecto beatae vitae
-                        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                        fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque
-                        porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit sed quia
-                        non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut
-                        enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-                        aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate
-                        velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum</p>
+                    <p class="d-flex text-justify">{{ product.description }}</p>
                     <form id="review-form" class="review-form p-50 mt-50 mb-30" name="review-form" action="#"
                           method="post">
                         <h4>Leave Your Reviews</h4>

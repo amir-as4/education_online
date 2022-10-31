@@ -15,6 +15,13 @@ def site_footer_component(request):
     })
 
 
+def site_footer_component_shop(request):
+    category = ProductCategory.objects.all()[:6]
+    return render(request, 'shop/site_footer_component.html', {
+        'categories': category
+    })
+
+
 def index_page(request):
     return render(request, 'home_module/index_page.html')
 
