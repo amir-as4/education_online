@@ -4242,10 +4242,10 @@ h1, h2, h3, h4, h5, h6, .bg-text, .coach-filter li, .newsletter-radios {
   text-decoration: underline; }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  content: "\f101";
+  content: "\f100";
   font-weight: 600;
   color: white;
-  float: left;
+  float: right;
   font-size: 16px;
   margin: 5px 10px 0;
   font-family: "Font Awesome 5 Free"; }
@@ -9470,7 +9470,7 @@ blockquote {
           color: white;
           text-decoration: underline; }
       .copyright-inner .footer-menu li:not(:last-child) {
-        margin-right: 25px; }
+        margin-left: 25px; }
 
 /* Newsletter */
 .footer-newsletter {
