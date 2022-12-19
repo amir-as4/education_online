@@ -73,7 +73,8 @@
                             <span class="sub-title-two">از ما بپرسید؟</span>
                             <h2>برای اطلاعات تماس بگیرید</h2>
                         </div>
-                        <p class="text-justify">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                        <p class="text-justify">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
+                            از طراحان گرافیک است
                             چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
                             تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
                         <div class="row no-gap mt-50">
@@ -115,39 +116,49 @@
     <!-- Contact Form Start -->
     <section class="contact-form-area wow fadeInUp delay-0-2s">
         <div class="container">
-            <form id="contact-form" class="contact-form p-50 z-1 rel" name="contact-form" action="#" method="post">
+
+            <form id="contact-form" class="contact-form p-50 z-1 rel" name="contact-form"
+                  action="{% url 'contact_us' %}" method="post" novalidate>
+                {% csrf_token %}
                 <div class="section-title text-center mb-50">
-                    <span class="sub-title-two">Send Us Message</span>
-                    <h2>Have Any Questions! Say Hello</h2>
+                    <span class="sub-title-two">پیام خود را به ما بفرستید</span>
+                    <h2>سوالات خو را بپرسید</h2>
                 </div>
                 <div class="row mt-25">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" id="full-name" name="full-name" class="form-control" value=""
-                                   placeholder="Full Name" required="">
+                    <div class="col-md-6">
+                        <div class="form-group {% if contact_from.full_name.errors %} alert alert-danger {% endif %} ">
+                            {{ contact_from.full_name }}
+                            {{ contact_from.full_name.errors }}
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="email" id="email-address" name="email" class="form-control" value=""
-                                   placeholder="Email Address" required="">
+                    <div class="col-md-6">
+                        <div class="form-group {% if contact_from.email.errors %} alert alert-danger {% endif %}">
+                            {{ contact_from.email }}
+                            {{ contact_from.email.errors }}
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="text" id="phone" name="phone" class="form-control" value=""
-                                   placeholder="Phone Number" required="">
+                    <div class="col-md-6">
+                        <div class="form-group  {% if contact_from.number.errors %} alert alert-danger {% endif %}">
+                            {{ contact_from.number }}
+                            {{ contact_from.number.errors }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group  {% if contact_from.title.errors %} alert alert-danger {% endif %}">
+                            {{ contact_from.title }}
+                            {{ contact_from.title.errors }}
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <textarea name="message" id="message" class="form-control" rows="4"
-                                      placeholder="Write Message" required=""></textarea>
+                        <div class="form-group  {% if contact_from.message.errors %} alert alert-danger {% endif %}">
+                            {{ contact_from.message }}
+                            {{ contact_from.message.errors }}
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group text-center mb-0">
-                            <button type="submit" class="theme-btn">send Message <i class="fas fa-arrow-right"></i>
+                            <button type="submit" class="theme-btn ml-2"> ارسال پیام <i
+                                    class="fas fa-arrow-left pr-2"></i>
                             </button>
                         </div>
                     </div>
